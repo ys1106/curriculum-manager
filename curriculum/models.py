@@ -20,5 +20,5 @@ class RecommendList(models.Model):
 
 
 class UserTopic(models.Model):
-    userid = models.OneToOneField(UserInfo, on_delete=models.CASCADE)
+    user = models.OneToOneField(UserInfo, on_delete=models.CASCADE)
     topic_list = models.ManyToManyField(Topic)
