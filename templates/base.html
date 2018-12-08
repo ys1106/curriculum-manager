@@ -15,15 +15,15 @@
 <nav>
     <div class="nav_container">
         <div class="nav_header">
-            <a class="nav_brand" href="{% url 'testest:index' %}"><span class="fas fa-home"></span> TEST 4 </a>
+            <a class="nav_brand" href="{% url 'index' %}"><span class="fas fa-home"></span> TEST 4 </a>
         </div>
         <div class="nav_right">
             <ul>
                 {% if user.is_active %}
-                <li><a href="{% url 'my_page' %}"><span class="fas fa-user-circle"></span>{{ user.username }}</a></li>
-                <li><a href="{% url 'logout' %}"><span class="fas fa-sign-out-alt"></span>Logout</a></li>
+                <li><a href="{% url 'curriculum:mypage' %}"><span class="fas fa-user-circle"></span>{{ user.username }}</a></li>
+                <li><a href="{% url 'user:logout' %}"><span class="fas fa-sign-out-alt"></span>Logout</a></li>
                 {% else %}
-                <li><a href="{% url 'login' %}"><span class="fas fa-user-circle"></span><br>Login</a></li>
+                <li><a href="{% url 'user:login' %}"><span class="fas fa-user-circle"></span><br>Login</a></li>
                 <li><a href="{% url 'admin:index' %}"><span class="fas fa-unlock-alt"></span><br>Admin</a></li>
                 {% endif %}
             </ul>
