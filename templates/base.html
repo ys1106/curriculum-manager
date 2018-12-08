@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>커리큘럼 추천 CR</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'base.css' %}" type="text/css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+</head>
+<body>
+<nav>
+    <div class="nav_container">
+        <div class="nav_header">
+            <a class="nav_brand" href="{% url 'testest:index' %}"><span class="fas fa-home"></span> TEST 4 </a>
+        </div>
+        <div class="nav_right">
+            <ul>
+                {% if user.is_active %}
+                <li><a href="{% url 'my_page' %}"><span class="fas fa-user-circle"></span>{{ user.username }}</a></li>
+                <li><a href="{% url 'logout' %}"><span class="fas fa-sign-out-alt"></span>Logout</a></li>
+                {% else %}
+                <li><a href="{% url 'login' %}"><span class="fas fa-user-circle"></span><br>Login</a></li>
+                <li><a href="{% url 'admin:index' %}"><span class="fas fa-unlock-alt"></span><br>Admin</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <div>
+        {% block content %}
+        {% endblock %}
+    </div>
+</div>
+
+</body>
+</html>
