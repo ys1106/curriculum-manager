@@ -1,4 +1,5 @@
 .idea
 *.pyc
 curriculum/migrations/*
+userinfo/migrations/*
 venv/*
