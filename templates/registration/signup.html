@@ -1,14 +1,16 @@
 {% extends 'base.html' %}
 {% block content %}
-
-    <form method="post">
-    {% csrf_token %}
-        {% for input in form %}
-            <div class="signup_form">
-                {{ input }}
-            </div>
-        {% endfor %}
-    <button class="signup_button" type="submit">회원가입</button>
-    </form>
-
+    <article class="signup">
+        <h2>회원가입 페이지<small> Sign up page</small></h2>
+        <form method="post">
+        {% csrf_token %}
+            {% for input in form %}
+                <div class="signup_form">
+                    <label class="signup_form_label" for="{{ input.id_for_label }}">{{ input.label }}</label>
+                    <div class="signup_form_input">{{ input }} {{ input.help_text }}</div>
+                </div>
+            {% endfor %}
+        <button class="signup_button" type="submit">회원가입</button>
+        </form>
+    </article>
 {% endblock %}

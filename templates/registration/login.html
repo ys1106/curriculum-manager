@@ -6,11 +6,12 @@
     {% csrf_token %}
         {% for input in form %}
             <div class="login_form">
+                <label class="login_form_label" for="{{ input.id_for_label }}">{{ input.label }}</label>
                 {{ input }}
             </div>
         {% endfor %}
     <button class="login_button" type="submit">로그인</button>
     </form>
     <br>
-    <p>아직도 CR의 회원이 아니신가요? <a href="{% url 'signup' %}">회원가입</a></p>
+    <p>아직도 CR의 회원이 아니신가요? <a href="{% url 'user:signup' %}">회원가입</a></p>
 {% endblock %}

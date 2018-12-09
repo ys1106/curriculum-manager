@@ -2,19 +2,45 @@
 {% block content %}
     <h2 class="pagename">MyCurriculum</h2>
 
-
     <div class="add_topic">
-        <form method="post">
-        {% csrf_token %}
-            {% for input in form %}
-                <div class="add_form">
-                    {{ input }}
-                </div>
-            {% endfor %}
-        <button class="add_button" type="submit">추가</button>
-        </form>
+{#        <form method="post">#}
+{#        {% csrf_token %}#}
+{#            {% for input in form %}#}
+{#                <div class="add_form">#}
+{#                    {{ input }}#}
+{#                </div>#}
+{#            {% endfor %}#}
+{#        </form>#}
+
+      <div id="add_button">추가하기</div>
+
+      <div id="addTable">
+        <div id="exit" onclick="exit()"></div>
+        <h5 class="addText">추가하고 싶은 커리큘럼을 입력하세요.</h5>
+
+        <div class="addContainer">
+{#            <form method="get">#}
+{#                <span>Curriculum: </span>#}
+{#              <input type="text" name="addTopic" value="">#}
+{#              <input type="submit" name="addButton" value="확인">#}
+{#            </form>#}
+
+            <form method="post">
+            {% csrf_token %}
+                {% for input in form %}
+                    <div class="addTopic_form">
+                        <label class="addTopic_form_label" for="{{ input.id_for_label }}">{{ input.label }}</label>
+                        {{ input }}
+                    </div>
+                {% endfor %}
+            <button class="addTopic_button" type="submit">추가</button>
+            </form>
+
+
+        </div>
+      </div>
+
+
     </div>
-
-
 
 {% endblock %}
