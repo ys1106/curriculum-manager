@@ -24,28 +24,36 @@ def topic_add(user_value):
         data2 = Topic.objects.get(name=user_value)
     except:
         data2 = Topic.objects.create(name=user_value)
-    finally:
-        return data2.name
+    return data2
 
 
 def recommend_topics(user_value):
     # RecommendList에 추가할 topic(user_value) 유무에 따라
     try:
-        data3 = RecommendList.objects.get(topic=Topic.objects.get(name=user_value))
+        topic = Topic.objects.get(name=user_value)
     except:
-        data3 = RecommendList.objects.create(topic=user_value)
+        topic = Topic.objects.create(name=user_value)
+    try:
+        data3 = RecommendList.objects.get(topic=topic)
+    except:
+        data3 = RecommendList.objects.create(topic=topic)
         list1 = curriculum_crawl.crawl(user_value)
         # crawl(user_value) 결과인 list1의 값들 Recommend 모델에 저장
+        print(list1)
         for i in range(len(list1)):
             try:
-                data4 = Recommend.objects.get(topic=Topic.objects.get(name=list1[i][0]),
-                                              num=list[i][1])
+                t2 = Topic.objects.get(name=list1[i][0])
             except:
-                data4 = Recommend.objects.create(topic=Topic.objects.get(name=list1[i][0]),
-                                                 num=list[i][1])
-            finally:
-                data3.recommend.add(data4.topic)
-    
+                t2 = Topic.objects.create(name=list1[i][0])
+            try:
+                data4 = Recommend.objects.get(topic=t2,
+                                              num=list1[i][1])
+            except:
+                data4 = Recommend.objects.create(topic=t2,
+                                                 num=list1[i][1])
+            data3.recommend.add(data4)
+            data3.recommend.remove()
+
 
 def my_page(request):
     if request.method == 'POST':
@@ -54,25 +62,51 @@ def my_page(request):
             user_value = form.cleaned_data.get('value')
             #UserTopic에 로그인된 사용자 객체 생성
             try:
+                #print(request.user)
+                #print(User.objects.get(username=request.user))
+                print(request.user)
                 data1 = UserTopic.objects.get(user=request.user)
+                #data1 = UserTopic.objects.get(user=UserInfo.objects.get(user=request.user))
+                #data1 = UserTopic.objects.get(user=request.user)
             except:
-                data1 = UserTopic.objects.create(user=request.user)
+                print(request.user)
+                data1 = UserTopic()
+                data1.user = request.user
+                data1.save()
+
 
             # Topic과 로그인한 사용자 topic 테이블에 사용자가 입력한(user_value) 추가
             data2 = topic_add(user_value)
             data1.topic_list.add(data2)
 
+
+
             # Recommend와 RecommendList에 topic(user_value) 추가
             recommend_topics(user_value)
 
-            print()
+            #########확인#####################################################
+            for f in data1.topic_list.all():
+                print('TOPIC')
+                print(f)
+                f_topic = Topic.objects.get(name=f)
+                f_recommend = RecommendList.objects.get(topic=f_topic)
+                for d in f_recommend.recommend.all():
+                    print('RECOMMEND')
+                    print(d)
+            #print(data1.topic_list.all())
+            #####################################################################
+
             return render(request, 'registration/mypage.html', locals())
 
 
     form = TopicForm()
-    user_value = form.cleaned_data.get('value')
-    ##### 마이페이지에 보여주는거 #####
-    print(RecommendList.objects.get(topic=Topic(name=user_value)).recommend)
+    # try:
+    #     user_topic = UserTopic.objects.get(user=request.user)
+    #     topics = user_topic.topic_list.all()
+    #     print(topics)
+    # except:
+    #     pass
+
     return render(request, 'registration/mypage.html', locals())
 
 
@@ -92,3 +126,5 @@ def my_page(request):
 #
 #     form = TopicForm()
 #     return render(request, 'registration/mypage.html', locals())
+
+

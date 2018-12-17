@@ -1,4 +1,4 @@
-body {
+body {  /*base.html의 body*/
     display: grid;
     width: 100%;
     height: 100%;
@@ -8,51 +8,108 @@ body {
     margin: 0px 0px;
 }
 
-.nav_container {
+.nav_container {  /*메인페이지 nav 부분 제일 바깥 div*/
     grid-area: nav_container;
     display: grid;
     grid-template-areas: "nav_header nav_right";
     grid-template-columns: 8fr 2fr;
     padding-top: 10px;
 }
-.nav_header {
+
+.nav_header {  /*메인페이지 nav부분의 홈버튼 div*/
     grid-area: nav_header;
 }
-.nav_right {
+
+.nav_right {  /*메인페이지 nav부분의 오른쪽에 들어가는 부분 div*/
     grid-area: nav_right;
     min-width: 300px;
 }
-.container {
+
+.container {  /*메인페이지 내용 들어갈 부분 div */
     grid-area: container;
 }
-.nav_brand {
+
+.nav_brand {  /*메인페이지 nav부분 홈버튼 마진 조정*/
     margin-left: 20px;
 }
-.nav_right ul {
+
+.nav_right ul {  /*메인페이지 nav부분 오른쪽에 들어가는 부분 마진 조정*/
     margin: 0;
 }
 
-a {
+a {  /*링크 밑줄 없애고 위치조정*/
     text-decoration: none;
     margin-right: 10px;
+    color: #5656a5;
 }
-li {
+li {  /*li태그 none으로 설정하고, 일렬로 정렬*/
     list-style-type: none;
     display: inline-block;
 }
-span {
+
+span { /*span태그 글씨크기 및 마진 조정*/
     font-size: 25px;
     margin-left:10px;
 }
-.image1 {
+
+.image1 {  /*메인페이지에 들어갈 사진 크기 및 위치 조정*/
     width:100%;
     max-width:1000px;
     display:block;
     margin-left:auto;
     margin-right:auto;
 }
-.pagename {
+
+.pagename {   /*페이지에 제목 위치 및 색 설정*/
     text-align: center;
     padding: 0px 0px;
-    color: darkblue;
+    color: #0077a5;
+    font-size: 30px;
+    font-family: Lucida Grande;
+
+}
+
+#addTable {
+  display: none;
+}
+
+#addTableDisplay {
+  position: absolute;
+  width: 300px;
+  height: 150px;
+  left: 20%;
+  top: 30%;
+  display: block;
+  border: 1px solid black;
+    padding-left: 10px;
+}
+
+#exit {
+  width: 20px;
+  height: 20px;
+  float: right;
+  position: relative;
+  background: url('image/close.png') no-repeat;
+  background-size: 100% 100%;
+  cursor: pointer;
+}
+
+#add_button {
+    border: 1px solid black;
+    width: 70px;
+    height: 25px;
+    margin-top: 10px;
+    margin-left: 10px;
+    text-align: center;
+    background-color: #0097A8;
+    /*background-color: #3FA5A4;*/
+    font-weight: bolder;
+    color: white;
+    border-radius: 3px;
+}
+
+#add_button:hover{
+    cursor: pointer;
+    background-color: #0284A8;
+
 }

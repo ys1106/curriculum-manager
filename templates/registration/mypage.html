@@ -3,27 +3,14 @@
     <h2 class="pagename">MyCurriculum</h2>
 
     <div class="add_topic">
-{#        <form method="post">#}
-{#        {% csrf_token %}#}
-{#            {% for input in form %}#}
-{#                <div class="add_form">#}
-{#                    {{ input }}#}
-{#                </div>#}
-{#            {% endfor %}#}
-{#        </form>#}
 
       <div id="add_button">추가하기</div>
 
       <div id="addTable">
-        <div id="exit" onclick="exit()"></div>
+        <div id="exit"></div>
         <h5 class="addText">추가하고 싶은 커리큘럼을 입력하세요.</h5>
 
         <div class="addContainer">
-{#            <form method="get">#}
-{#                <span>Curriculum: </span>#}
-{#              <input type="text" name="addTopic" value="">#}
-{#              <input type="submit" name="addButton" value="확인">#}
-{#            </form>#}
 
             <form method="post">
             {% csrf_token %}
@@ -36,10 +23,29 @@
             <button class="addTopic_button" type="submit">추가</button>
             </form>
 
-
         </div>
       </div>
 
+
+{# 추천 커리큘럼들 보여줄 부분 (vis.js, vis.css 추가) #}
+    <div id="recommend_container">
+        <div id="myrecommend">
+
+        </div>
+
+        <script>
+            import * as vis from "../../static/vis";
+
+            let nodes = new vis.DataSet([
+            ]);
+
+            let edges = new vis.DataSet([
+
+            ]);
+
+            var container = document.getElementById('myrecommend')
+        </script>
+    </div>
 
     </div>
 

@@ -14,41 +14,27 @@ class LoginForm(forms.Form):
     )
     password = forms.CharField(
         max_length=30,
-        min_length=10,
+        min_length=5,
         label='비밀번호',
-        widget=forms.PasswordInput()
+        widget=forms.PasswordInput({
+            'placeholder': '비밀번호를 입력해주세요'
+        })
     )
-
-    def check(self):
-        User.check_password(self) #??
 
 
 class SignupFrom(forms.Form):
     username_validator = UnicodeUsernameValidator()
 
     username = forms.CharField(
-        #_('username'),
         max_length=150,
         label='아이디',
-        unique=True,
         help_text='150자 이하의 문자나 숫자, 그리고 @/./+/-/_ 만 가능합니다.',
-        validators=[username_validator],
-        error_messages={
-            'unique': "이미 존재하는 아이디입니다.",
-        },
     )
     name = forms.CharField(
         max_length=15,
         label='이름'
     )
-    email = forms.EmailField(
-        #_('email address'),
-        blank=True,
-        unique=True,
-        error_message={
-            'unique': '이미 존재하는 이메일입니다.'
-        }
-    )
+    email = forms.EmailField()
     birth = forms.DateField(label='생년월일')
     password1 = forms.CharField(
         label = '비밀번호',
@@ -63,6 +49,14 @@ class SignupFrom(forms.Form):
         help_text='위에서 입력한 비밀번호와 동일한 비밀번호를 입력해주세요'
     )
 
-    def save(self, commit=True):
-        pass
+    def password_check(self):
+        password1 = self.cleaned_data.get("password1")
+        password2 = self.cleaned_data.get("password2")
+        if password1 and password2 and password1 != password2:
+            raise forms.ValidationError(
+                self.error_messages['password_mismatch'],
+                code='password+mismatch',
+            )
+        return password2
+
 

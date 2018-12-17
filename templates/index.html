@@ -1,6 +1,12 @@
-{% extends 'base.html' %}
-{% block content %}
-    <h2 class="pagename">test1206 Main Page</h2>
-    {% load staticfiles %}
-    <img class="image1" src="{% static 'image/picmain.png' %}">
+{% extends 'base.html' %}  {# 기본템플릿인 base.html을 확장한, 메인페이지 템플릿 #}
+{% block content %}  {# 기본템플릿에서의 {% block content %} 공간 안에 들어감 #}
+    <h2 class="pagename">  {# 메인페이지 글자 넣는 #}
+        {% if user.is_authenticated %}  {# 로그인 되어 있으면 #}
+         {{ user }}  {# 로그인한 사용자의 이름이 들어가고 #}
+        {% else %}  {# 로그인 되어있지 않으면 #}
+            Recommend Curriculum  {# 이 웹페이지의 이름이 들어감 #}
+        {% endif %}
+        Main Page</h2>
+    {% load staticfiles %}  {# static 파일들을 사용하려면 이 태그를 명시해야 함 #}
+    <img class="image1" src="{% static 'image/picmain.png' %}">  {# 메인 화면에 사진 첨부 #}
 {% endblock %}

@@ -1,0 +1,68 @@
+[33mcommit c24982c9078dd1247c76d502929a901640146b2f[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: ys1106 <yusun1162@gmail.com>
+Date:   Sun Dec 9 01:44:48 2018 +0900
+
+    userinfo app에 form, model 정의
+    
+    로그인, 회원가입 폼 정의
+    userinfo model 정의
+    views.py에 로그인,회원가입,로그아웃 페이지 정의 / 로그인 함수
+    url 추가
+
+[33mcommit bab098f984fe15f1de357a73e15b3d2a59caa7da[m
+Author: ys1106 <yusun1162@gmail.com>
+Date:   Sun Dec 9 01:40:16 2018 +0900
+
+    curriculum app에 model 정의
+    
+    curriculum 관련 model 추가
+    views.py에 mypage 정의
+    urlpatterns 추가
+
+[33mcommit 552c08e279214b81fb7e585a41e329d1a3241fbe[m
+Author: ys1106 <yusun1162@gmail.com>
+Date:   Sun Dec 9 01:36:15 2018 +0900
+
+    curriculum_manager 수정
+    
+    startapp들urls.py 추가 후 프로젝트 urlpatterns에 추가
+
+[33mcommit e56fe972d45ee66d048c6deafa7c867542d8be07[m
+Author: ys1106 <yusun1162@gmail.com>
+Date:   Sun Dec 9 01:26:19 2018 +0900
+
+    registration 파일들 추가
+    
+    login, logout, mypage, signup 파일 추가 후 base 수정
+
+[33mcommit c0c061c2d32da437df82cd8b2eafb3549c1f73fa[m[33m ([m[1;31morigin/master[m[33m)[m
+Author: ys1106 <yusun1162@gmail.com>
+Date:   Sat Dec 8 16:09:47 2018 +0900
+
+    base 화면 정의
+    
+    template과 static 폴더에 기본 화면설정
+    css, html, 이미지를 추가
+
+[33mcommit 10d4d57e6291decc8e739774913e08c0e9edd783[m
+Author: ys1106 <yusun1162@gmail.com>
+Date:   Sat Dec 8 16:08:59 2018 +0900
+
+    user info app 추가
+    
+    userinfo를 따로 관리할 app을 추가하고
+    User정보를 관리할 model을 정의함
+
+[33mcommit a2ea411a0218e2d2b00d9d57236cc52148ef407d[m
+Author: ys1106 <yusun1162@gmail.com>
+Date:   Sat Dec 8 16:07:44 2018 +0900
+
+    model, form 정의
+    
+    커리큘럼에 저장할 모델과 받을 form 정의
+
+[33mcommit 0272bc4f876bcba41c501a4a47a89eab11c8f7ad[m
+Author: ys1106 <yusun1162@gmail.com>
+Date:   Sat Dec 8 13:54:06 2018 +0900
+
+    initial commit

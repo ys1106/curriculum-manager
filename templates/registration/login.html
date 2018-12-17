@@ -1,17 +1,17 @@
-{% extends 'base.html' %}
-{% block content %}
-    {{ errors }}
+{% extends 'base.html' %}  {# 기본템플릿인 base.html을 확장한, 로그인 템플릿 #}
+{% block content %}  {# 기본템플릿의 {% block content 영역에 들어감 %} #}
 
-    <form method="post">
-    {% csrf_token %}
-        {% for input in form %}
+    <form method="post">  {# post 방식의 form #}
+    {% csrf_token %}  {# 보안을 위한 태그 #}
+        {% for input in form %}  {# LoginForm에 있는 필드들 반복문을 통해 input에 넣음 #}
             <div class="login_form">
-                <label class="login_form_label" for="{{ input.id_for_label }}">{{ input.label }}</label>
-                {{ input }}
+                <label class="login_form_label" for="{{ input.id_for_label }}">{{ input.label }}</label>  {# LoginForm에서 필드마다 설정한 라벨 출력 위해 #}
+                {{ input }}  {# 필드들 출력 #}
             </div>
         {% endfor %}
-    <button class="login_button" type="submit">로그인</button>
+    <button class="login_button" type="submit">로그인</button>  {# 로그인 버튼 삽입 #}
     </form>
     <br>
-    <p>아직도 CR의 회원이 아니신가요? <a href="{% url 'user:signup' %}">회원가입</a></p>
+    {{ err }}  {# vies.py의 login_page에서 저장한 에러메시지 출력 (에러가 발생하면)#}
+    <p>아직도 CR의 회원이 아니신가요? <a href="{% url 'user:signup' %}">회원가입</a></p>  {# 회원가입 버튼 삽입. 클릭하면 회원가입 url로 이동 #}
 {% endblock %}

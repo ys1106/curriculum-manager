@@ -1,3 +1,4 @@
+{# 기본 템플릿 base.html #}
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -7,9 +8,11 @@
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>커리큘럼 추천 CR</title>
 
-    {% load staticfiles %}
-    <script src="{% static 'base.js' %}" type="text/javascript"></script>
-    <link rel="stylesheet" href="{% static 'base.css' %}" type="text/css" />
+    {% load staticfiles %}  {# static 파일인 css파일 가져오기 위한 태그 #}
+    <script src="{% static 'base.js' %}" type="text/javascript"></script>  {# js 파일 연결 #}
+    <link rel="stylesheet" href="{% static 'base.css' %}" type="text/css" />  {# css 파일 연결 #}
+
+    {# 중간중간 아이콘 가져와서 넣기 위해 #}
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 
 </head>
@@ -17,16 +20,16 @@
 <nav>
     <div class="nav_container">
         <div class="nav_header">
-            <a class="nav_brand" href="{% url 'index' %}"><span class="fas fa-home"></span> TEST 4 </a>
+            <a class="nav_brand" href="{% url 'index' %}"><span class="fas fa-home"></span> HOME </a>  {# 홈버튼 누르면 index url로 연결 #}
         </div>
         <div class="nav_right">
             <ul>
-                {% if user.is_active %}
-                <li><a href="{% url 'curriculum:mypage' %}"><span class="fas fa-user-circle"></span>{{ user.username }}</a></li>
-                <li><a href="{% url 'user:logout' %}"><span class="fas fa-sign-out-alt"></span>Logout</a></li>
-                {% else %}
-                <li><a href="{% url 'user:login' %}"><span class="fas fa-user-circle"></span><br>Login</a></li>
-                <li><a href="{% url 'admin:index' %}"><span class="fas fa-unlock-alt"></span><br>Admin</a></li>
+                {% if user.is_active %}  {# 로그인 되어 있으면 #}
+                <li><a href="{% url 'curriculum:mypage' %}"><span class="fas fa-user-circle"></span>{{ user.username }}</a></li>  {# 사용자 이름을 클릭하면 curriculum앱의 mypage url로 연결 #}
+                <li><a href="{% url 'user:logout' %}"><span class="fas fa-sign-out-alt"></span>Logout</a></li>  {# 로그아웃 누르면 user앱의 logout url로 연결 #}
+                {% else %}  {# 로그인 되어 있지 않으면 #}
+                <li><a href="{% url 'user:login' %}"><span class="fas fa-user-circle"></span><br>Login</a></li>  {# Login 클릭하면 user 앱의 login url로 연결 #}
+                <li><a href="{% url 'admin:index' %}"><span class="fas fa-unlock-alt"></span><br>Admin</a></li>  {# Admin 클릭하면 관리자 페이지로 이동 #}
                 {% endif %}
             </ul>
         </div>
@@ -34,7 +37,8 @@
 </nav>
 
 <div class="container">
-    <div>
+    <div>  {# 이 영역에는 block content 부분이 들어옴 #}
+    {# 기본템플릿인 base.html을 확장하여 만들어지는 다른 템플릿들이 이 공간을 쓸 수 있도록 아래의 코드를 사용 #}
         {% block content %}
         {% endblock %}
     </div>
